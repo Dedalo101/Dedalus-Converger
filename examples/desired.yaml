@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+"""
+Dedalus Converger CLI — minimal, auditable entrypoint.
+
+Commands:
+  audit  — zero side effects, print plan as JSON
+  plan   — write plan.json artifact
+  apply  — mutating phase, requires --confirm
+"""
+
+import json
+import sys
+from pathlib import Path
+
+import click
+from converger import contract
+from converger.model import Desired
+from converger.observe import observe_live, observe_replay
+from converger.plan import plan
+from converger.safety import enforce_safety
+from converger.apply import audit, apply
+
+# Verify locked contract on every invocation
+contract.verify_contract()
+
+@click.group()
+def cli():
+    """Dedalus Converger — domain-agnostic reconciliation with refusal semantics."""
+    pass
+
+@cli.command()
+@click.option("--desired", "-d", type=click.Path(exists=True), required=True, help="Path to desired.yaml")
+@click.option("--replay", "-r", type=click.Path(exists=True), help="Path to replay JSON snapshot")
+def audit(desired: str, replay: str | None) -> None:
+    """Audit mode — zero side effects, print plan."""
+    current = observe_replay(replay) if replay else observe_live()
+    desired_objs = _load_desired(desired)
+    steps = plan(current, desired_objs)
+    safe_steps = enforce_safety(steps)
+    audit(safe_steps)
+
+@cli.command()
+@click.option("--desired", "-d", type=click.Path(exists=True), required=True)
+@click.option("--replay", "-r", type=click.Path(exists=True), help="Path to replay snapshot")
+@click.option("--output", "-o", type=click.Path(), default="plan.json", help="Output plan artifact")
+def plan_cmd(desired: str, replay: str | None, output: str) -> None:
+    """Plan mode — write structured plan.json."""
+    current = observe_replay(replay) if replay else observe_live()
+    desired_objs = _load_desired(desired)
+    steps = plan(current, desired_objs)
+    safe_steps = enforce_safety(steps)
+
+    Path(output).write_text(json.dumps([s.__dict__ for s in safe_steps], indent=2))
+    click.echo(f"Plan written to {output}")
+
+@cli.command()
+@click.option("--desired", "-d", type=click.Path(exists=True), required=True)
+@click.option("--replay", "-r", type=click.Path(exists=True), help="Replay mode (dry-run only)")
+@click.option("--confirm", is_flag=True, help="Explicit confirmation required to apply")
+def apply_cmd(desired: str, replay: str | None, confirm: bool) -> None:
+    """Apply mode — only mutating phase."""
+    if replay:
+        click.echo("Apply with --replay is refused — replay is read-only.")
+        sys.exit(1)
+
+    if not confirm:
+        click.echo("Apply requires explicit --confirm flag.")
+        sys.exit(1)
+
+    current = observe_live()
+    desired_objs = _load_desired(desired)
+    steps = plan(current, desired_objs)
+    safe_steps = enforce_safety(steps)
+
+    click.confirm(f"Apply {len(safe_steps)} changes?", abort=True)
+    apply(safe_steps)
+    click.echo("Applied.")
+
+def _load_desired(path: str):
+    import yaml
+    data = yaml.safe_load(Path(path).read_text())
+    return [Desired(**item) for item in data]
+
+if __name__ == "__main__":
+    cli()
