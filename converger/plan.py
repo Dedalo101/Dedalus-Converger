@@ -2,6 +2,7 @@ from typing import List
 
 from .model import VMState, Desired, PlanStep
 
+
 def plan(current: List[VMState], desired: List[Desired]) -> List[PlanStep]:
     """
     Deterministic planning.
@@ -20,25 +21,31 @@ def plan(current: List[VMState], desired: List[Desired]) -> List[PlanStep]:
             continue  # out of scope — not in desired list
 
         if state.status == des.target:
-            steps.append(PlanStep(
-                vmid=state.vmid,
-                name=state.name,
-                action="noop",
-                reason="already in desired state"
-            ))
+            steps.append(
+                PlanStep(
+                    vmid=state.vmid,
+                    name=state.name,
+                    action="noop",
+                    reason="already in desired state",
+                )
+            )
         elif state.status == "running" and des.target == "stopped":
-            steps.append(PlanStep(
-                vmid=state.vmid,
-                name=state.name,
-                action="stop",
-                reason="desired stopped"
-            ))
+            steps.append(
+                PlanStep(
+                    vmid=state.vmid,
+                    name=state.name,
+                    action="stop",
+                    reason="desired stopped",
+                )
+            )
         elif state.status == "stopped" and des.target == "running":
-            steps.append(PlanStep(
-                vmid=state.vmid,
-                name=state.name,
-                action="start",
-                reason="desired running"
-            ))
+            steps.append(
+                PlanStep(
+                    vmid=state.vmid,
+                    name=state.name,
+                    action="start",
+                    reason="desired running",
+                )
+            )
 
     return steps

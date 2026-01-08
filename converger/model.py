@@ -3,6 +3,7 @@ from typing import Literal, Optional
 
 Status = Literal["running", "stopped", "unknown"]
 
+
 @dataclass(frozen=True)
 class VMState:
     vmid: int
@@ -12,6 +13,7 @@ class VMState:
     maxmem: Optional[int] = None
     source: str = "live"
 
+
 @dataclass(frozen=True)
 class Desired:
     vmid: int
@@ -19,6 +21,7 @@ class Desired:
     target: Literal["running", "stopped"]
     cpus: Optional[int] = None
     memory: Optional[int] = None
+
 
 @dataclass(frozen=True)
 class PlanStep:

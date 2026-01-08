@@ -5,6 +5,7 @@ from pathlib import Path
 # We will compute the real hash after final stabilization
 DESIGN_HASH = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"  # placeholder — update soon
 
+
 def verify_contract() -> None:
     """Fail fast if DESIGN.md changed without version bump."""
     design_path = Path(__file__).parent.parent / "docs" / "DESIGN.md"

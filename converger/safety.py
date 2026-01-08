@@ -2,15 +2,18 @@ from typing import List
 
 from .model import PlanStep
 
+
 class PolicyViolation(RuntimeError):
     """Explicit refusal of unsafe actions."""
+
     pass
+
 
 def enforce_safety(steps: List[PlanStep]) -> List[PlanStep]:
     """
     Policy enforcement — returns only safe steps.
     Raises PolicyViolation on invariant breach.
-    
+
     Current locked policy:
     - Never stop a VM whose name starts with "prod-"
     """
