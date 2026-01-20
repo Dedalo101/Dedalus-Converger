@@ -1,20 +1,16 @@
 from dataclasses import dataclass
-from typing import Literal, Optional
-
-Status = Literal["running", "stopped", "unknown"]
-
+from typing import Literal, Optional, List
 
 @dataclass(frozen=True)
 class VMState:
     vmid: int
     name: str
-    status: Status
+    status: Literal["running", "stopped", "unknown"]
     cpus: Optional[int] = None
     maxmem: Optional[int] = None
     source: str = "live"
 
-
-@dataclass(frozen=True)
+@dataclass
 class Desired:
     vmid: int
     name: str
@@ -22,10 +18,9 @@ class Desired:
     cpus: Optional[int] = None
     memory: Optional[int] = None
 
-
-@dataclass(frozen=True)
+@dataclass
 class PlanStep:
     vmid: int
     name: str
-    action: Literal["start", "stop", "noop"]
+    action: Literal["start", "stop", "resize", "noop"]
     reason: str

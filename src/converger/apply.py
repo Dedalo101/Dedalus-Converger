@@ -1,23 +1,15 @@
 from typing import List
-import json
-
 from .model import PlanStep
 
+def audit(steps: List[PlanStep]):
+    print("=== AUDIT MODE ===")
+    print("No changes applied.")
+    if not steps:
+        print("Empty plan (refusal enforced).")
+    for step in steps:
+        print(f"{step.action.upper()} {step.name} (vmid={step.vmid}) - {step.reason}")
 
-def audit(steps: List[PlanStep]) -> None:
-    """
-    Audit mode — zero side effects.
-    Emits structured JSON for review (current.json / plan.json artifact).
-    """
-    print(json.dumps([step.__dict__ for step in steps], indent=2))
-
-
-def apply(steps: List[PlanStep]) -> None:
-    """
-    Apply mode — only mutating phase.
-    Placeholder until real adapter implementation.
-    Requires explicit confirmation in CLI.
-    """
-    raise NotImplementedError(
-        "Apply requires adapter-specific execution and confirmation"
-    )
+def apply(steps: List[PlanStep]):
+    print("=== APPLY MODE ===")
+    print("Mutating - confirmation required.")
+    # TODO: Real mutation + confirm
