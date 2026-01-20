@@ -1,7 +1,7 @@
 import hashlib
 import os
 
-DESIGN_HASH = "7e7b17c8bc05f4fdae25b5c6a3ea0c21fe012cdea4d3cb77a8228aadeca3da8e"
+DESIGN_HASH = "7021488b8418c146bd1d82c289ed403ba07acabb2eadf0fa10989d2e1b66f956"
 
 def verify_contract():
     path = os.path.join(os.path.dirname(__file__), "..", "..", "DESIGN.md")
@@ -11,7 +11,9 @@ def verify_contract():
         computed = hashlib.sha256(content).hexdigest()
         if computed != DESIGN_HASH:
             raise ValueError(
-                f"DESIGN.md violated!\nExpected: {DESIGN_HASH}\nGot: {computed}"
+                f"DESIGN.md contract violated!\n"
+                f"Expected: {DESIGN_HASH}\n"
+                f"Got:      {computed}"
             )
     except FileNotFoundError:
-        raise FileNotFoundError("DESIGN.md missing")
+        raise FileNotFoundError("DESIGN.md missing from repository root")

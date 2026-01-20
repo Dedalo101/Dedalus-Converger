@@ -1,11 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "dedalus-converger"
 version = "0.1.0"
 description = "Domain-agnostic reconciliation engine with explicit refusal semantics"
-readme = "README.md"
-requires-python = ">=3.9"
-license = {text = "MIT"}
 authors = [{name = "Dedalo Smith"}]
+license = {text = "MIT"}
+requires-python = ">=3.9"
 dependencies = [
     "proxmoxer>=2.0",
     "pyyaml",
@@ -16,12 +19,7 @@ dependencies = [
 dev = ["pytest", "black", "ruff"]
 
 [project.scripts]
-converger = "converger.cli:main"  # adjust once we move cli
+converger = "src.converger.cli:main"
 
-[build-system]
-requires = ["setuptools>=61", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["src"]  # we'll create src/ next
-namespaces = false
+[tool.hatch.build.targets.wheel]
+packages = ["src/converger"]
