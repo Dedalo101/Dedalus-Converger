@@ -9,9 +9,11 @@ from src.converger.apply import audit
 
 contract.verify_contract()
 
+
 @click.group()
 def main():
     pass
+
 
 @main.command()
 def audit_live():
@@ -25,6 +27,7 @@ def audit_live():
         audit(safe_steps)
     except (FileNotFoundError, PolicyViolation, Exception) as e:
         click.echo(f"Error: {e}", err=True)
+
 
 if __name__ == "__main__":
     main()

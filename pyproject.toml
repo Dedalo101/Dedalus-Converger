@@ -16,10 +16,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "black", "ruff"]
+dev = ["pytest", "black", "ruff", "pre-commit"]
 
 [project.scripts]
-converger = "src.converger.cli:main"
+converger = "dedalus_converger.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/converger"]
