@@ -100,5 +100,5 @@ pytest tests/ -v          # Negative proofs must pass
 ruff check .              # Lint
 black --check .           # Format
 git add README.md
-git commit -m "docs: restore original README with philosophy and quick start"
+git commit -m "docs: 
 git push origin main
