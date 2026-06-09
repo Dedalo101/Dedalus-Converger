@@ -1,0 +1,15 @@
+# Copy to converger.yaml and fill in your Proxmox API token details.
+# Environment substitution is supported: ${PROXMOX_TOKEN_VALUE}
+
+proxmox:
+  host: pve.example.com
+  user: root@pam
+  token_name: converger
+  token_value: ${PROXMOX_TOKEN_VALUE}
+  verify_ssl: false
+  node: pve1  # optional — auto-detects first node if omitted
+
+artifacts:
+  current: current.json
+  plan: plan.json
+  result: result.json

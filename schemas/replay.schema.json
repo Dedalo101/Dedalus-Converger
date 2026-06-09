@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dedalus-converger.io/schemas/replay.schema.json",
+  "title": "Dedalus Converger Replay Snapshot",
+  "description": "Array of VMState observations for deterministic replay testing.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["vmid", "name", "status"],
+    "additionalProperties": false,
+    "properties": {
+      "vmid": { "type": "integer" },
+      "name": { "type": "string", "minLength": 1 },
+      "status": {
+        "type": "string",
+        "enum": ["running", "stopped", "unknown"]
+      },
+      "cpus": { "type": "integer", "minimum": 1 },
+      "maxmem": { "type": "integer", "minimum": 1 },
+      "source": { "type": "string", "default": "replay" },
+      "node": { "type": "string" }
+    }
+  }
+}

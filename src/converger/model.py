@@ -10,6 +10,7 @@ class VMState:
     cpus: Optional[int] = None
     maxmem: Optional[int] = None
     source: str = "live"
+    node: Optional[str] = None
 
 
 @dataclass
@@ -27,3 +28,6 @@ class PlanStep:
     name: str
     action: Literal["start", "stop", "resize", "noop"]
     reason: str
+    node: Optional[str] = None
+    target_cpus: Optional[int] = None
+    target_memory: Optional[int] = None

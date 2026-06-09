@@ -90,8 +90,14 @@ converger audit --desired examples/desired.yaml --replay examples/replay.json
 # Write plan artifact
 converger plan --desired examples/desired.yaml --replay examples/replay.json --output plan.json
 
-# Apply against live Proxmox (requires credentials + --confirm)
+# Apply against live Proxmox (requires converger.yaml + --confirm)
+cp examples/converger.yaml.example converger.yaml
 converger apply --desired examples/desired.yaml --confirm
+
+# Artifacts emitted on every run:
+# current.json  — observation snapshot
+# plan.json     — reconciliation steps
+# result.json   — apply outcomes (apply mode only)
 
 pytest tests/ -v
 ruff check .

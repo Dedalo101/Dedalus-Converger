@@ -45,6 +45,7 @@ def test_replay_equivalence():
             name="web-01",
             action="start",
             reason="desired running, observed stopped",
+            node=None,
         )
     ]
 

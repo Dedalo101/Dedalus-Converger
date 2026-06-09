@@ -1,7 +1,8 @@
 import json
-from typing import Any, Dict, List
+from typing import List
 
 from ..model import VMState
+from ..schema import SchemaValidationError, validate_replay_payload
 from .base import ObservationAdapter, ObservationError
 from .registry import AdapterRegistry
 
@@ -20,34 +21,23 @@ class ReplayAdapter(ObservationAdapter):
         except json.JSONDecodeError as exc:
             raise ObservationError(f"Replay file is not valid JSON: {path}") from exc
 
-        if not isinstance(payload, list):
-            raise ObservationError(
-                "Replay payload must be a JSON array of VMState objects"
+        try:
+            validated = validate_replay_payload(payload)
+        except SchemaValidationError as exc:
+            raise ObservationError(str(exc)) from exc
+
+        return [
+            VMState(
+                vmid=item["vmid"],
+                name=item["name"],
+                status=item["status"],
+                cpus=item.get("cpus"),
+                maxmem=item.get("maxmem"),
+                source=item.get("source", "replay"),
+                node=item.get("node"),
             )
-
-        states: List[VMState] = []
-        for index, item in enumerate(payload):
-            if not isinstance(item, dict):
-                raise ObservationError(f"Replay entry {index} must be an object")
-            try:
-                states.append(_vmstate_from_dict(item))
-            except (KeyError, TypeError, ValueError) as exc:
-                raise ObservationError(
-                    f"Replay entry {index} is invalid: {exc}"
-                ) from exc
-
-        return states
-
-
-def _vmstate_from_dict(item: Dict[str, Any]) -> VMState:
-    return VMState(
-        vmid=int(item["vmid"]),
-        name=str(item["name"]),
-        status=item["status"],
-        cpus=item.get("cpus"),
-        maxmem=item.get("maxmem"),
-        source=str(item.get("source", "replay")),
-    )
+            for item in validated
+        ]
 
 
 AdapterRegistry.register(ReplayAdapter)

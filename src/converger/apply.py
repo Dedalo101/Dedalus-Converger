@@ -1,7 +1,6 @@
-import json
-from pathlib import Path
-from typing import List
+from typing import Callable, List, Optional
 
+from .artifacts import write_result
 from .model import PlanStep
 
 
@@ -16,34 +15,41 @@ def audit(steps: List[PlanStep]) -> None:
         print(f"{step.action.upper()} {step.name} (vmid={step.vmid}) - {step.reason}")
 
 
-def apply(steps: List[PlanStep], output: str = "result.json") -> None:
+def apply(
+    steps: List[PlanStep],
+    executor: Optional[Callable[[List[PlanStep]], List[dict]]] = None,
+    output: str = "result.json",
+) -> List[dict]:
     print("=== APPLY MODE ===")
     print("Mutating - confirmation required.")
 
-    results = []
-    for step in steps:
-        if step.action == "noop":
-            results.append(
-                {
-                    "vmid": step.vmid,
-                    "name": step.name,
-                    "action": step.action,
-                    "status": "skipped",
-                    "reason": step.reason,
-                }
-            )
-            continue
-
-        results.append(
+    if executor is not None:
+        results = executor(steps)
+    else:
+        results = [
             {
                 "vmid": step.vmid,
                 "name": step.name,
                 "action": step.action,
-                "status": "pending",
+                "status": "skipped" if step.action == "noop" else "pending",
                 "reason": step.reason,
+                "detail": "no executor configured",
             }
-        )
-        print(f"PENDING {step.action.upper()} {step.name} (vmid={step.vmid})")
+            for step in steps
+        ]
 
-    Path(output).write_text(json.dumps(results, indent=2), encoding="utf-8")
+    for result in results:
+        if result["status"] == "applied":
+            print(
+                f"APPLIED {result['action'].upper()} {result['name']} "
+                f"(vmid={result['vmid']})"
+            )
+        elif result["status"] == "failed":
+            print(
+                f"FAILED {result['action'].upper()} {result['name']} "
+                f"(vmid={result['vmid']}): {result.get('detail')}"
+            )
+
+    write_result(results, output)
     print(f"Apply results written to {output}")
+    return results

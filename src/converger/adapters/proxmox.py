@@ -2,6 +2,7 @@ from typing import List
 
 from ..model import VMState
 from .base import ObservationAdapter, ObservationError
+from .proxmox_client import create_api, resolve_node
 from .registry import AdapterRegistry
 
 _STATUS_MAP = {
@@ -16,33 +17,11 @@ class ProxmoxAdapter(ObservationAdapter):
 
     def observe(self) -> List[VMState]:
         try:
-            from proxmoxer import ProxmoxAPI
-        except ImportError as exc:
-            raise ObservationError(
-                "proxmoxer is required for live Proxmox observation"
-            ) from exc
-
-        api = ProxmoxAPI(
-            self.config["host"],
-            user=self.config["user"],
-            token_name=self.config["token_name"],
-            token_value=self.config["token_value"],
-            verify_ssl=bool(self.config.get("verify_ssl", False)),
-        )
-
-        node = self.config.get("node")
-        if not node:
-            nodes = api.nodes.get()
-            if not nodes:
-                raise ObservationError("No Proxmox nodes available")
-            node = nodes[0]["node"]
-
-        try:
+            api = create_api(self.config)
+            node = resolve_node(api, self.config)
             qemu_vms = api.nodes(node).qemu.get()
         except Exception as exc:
-            raise ObservationError(
-                f"Proxmox observation failed for node {node}: {exc}"
-            ) from exc
+            raise ObservationError(f"Proxmox observation failed: {exc}") from exc
 
         states: List[VMState] = []
         for vm in qemu_vms:
@@ -55,6 +34,7 @@ class ProxmoxAdapter(ObservationAdapter):
                         name=str(vm.get("name", f"vm-{vm['vmid']}")),
                         status="unknown",
                         source="live",
+                        node=node,
                     )
                 )
                 continue
@@ -67,6 +47,7 @@ class ProxmoxAdapter(ObservationAdapter):
                     cpus=vm.get("cpus"),
                     maxmem=vm.get("maxmem"),
                     source="live",
+                    node=node,
                 )
             )
 
