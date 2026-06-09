@@ -31,6 +31,7 @@ def test_load_config_from_yaml(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     )
 
     config = load_config(config_file)
+    assert config.source == "proxmox"
     assert config.proxmox is not None
     assert config.proxmox.host == "pve.local"
     assert config.proxmox.node == "pve1"

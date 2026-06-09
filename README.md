@@ -94,10 +94,19 @@ converger plan --desired examples/desired.yaml --replay examples/replay.json --o
 cp examples/converger.yaml.example converger.yaml
 converger apply --desired examples/desired.yaml --confirm
 
+# Dry-run apply (records Proxmox API calls, no mutations)
+converger apply --desired examples/desired.yaml --dry-run
+
+# Cloud / DFIR observation
+converger plan -c examples/converger.aws.yaml.example -d examples/desired.yaml -s aws
+converger plan -c examples/converger.dfir.yaml.example -d examples/desired.yaml --dfir examples/dfir_systems.json
+
 # Artifacts emitted on every run:
-# current.json  — observation snapshot
-# plan.json     — reconciliation steps
-# result.json   — apply outcomes (apply mode only)
+# current.json          — observation snapshot
+# plan.json             — reconciliation steps
+# result.json           — apply outcomes
+# post_apply.json       — post-apply re-observation
+# post_apply_report.json — convergence verification
 
 pytest tests/ -v
 ruff check .

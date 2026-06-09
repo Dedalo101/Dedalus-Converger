@@ -15,7 +15,7 @@ def _config():
 
 
 @patch("converger.adapters.proxmox_apply.create_api")
-def test_apply_start_and_stop(mock_create_api):
+def test_apply_start_and_stop(mock_create_api):  # noqa: ARG001
     api = MagicMock()
     mock_create_api.return_value = api
     api.nodes.return_value.qemu.return_value.status.start.post.return_value = None

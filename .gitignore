@@ -50,3 +50,5 @@ coverage.xml
 plan.json
 current.json
 result.json
+post_apply.json
+post_apply_report.json

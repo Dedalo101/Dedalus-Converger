@@ -19,9 +19,15 @@ def apply(
     steps: List[PlanStep],
     executor: Optional[Callable[[List[PlanStep]], List[dict]]] = None,
     output: str = "result.json",
+    *,
+    dry_run: bool = False,
 ) -> List[dict]:
-    print("=== APPLY MODE ===")
-    print("Mutating - confirmation required.")
+    if dry_run:
+        print("=== DRY-RUN APPLY ===")
+        print("No mutations executed. API calls recorded only.")
+    else:
+        print("=== APPLY MODE ===")
+        print("Mutating - confirmation required.")
 
     if executor is not None:
         results = executor(steps)
@@ -39,12 +45,19 @@ def apply(
         ]
 
     for result in results:
-        if result["status"] == "applied":
+        status = result["status"]
+        if status == "applied":
             print(
                 f"APPLIED {result['action'].upper()} {result['name']} "
                 f"(vmid={result['vmid']})"
             )
-        elif result["status"] == "failed":
+        elif status == "dry_run":
+            api_call = result.get("api_call", {})
+            print(
+                f"DRY-RUN {result['action'].upper()} {result['name']} "
+                f"(vmid={result['vmid']}) -> {api_call.get('method')} {api_call.get('path')}"
+            )
+        elif status == "failed":
             print(
                 f"FAILED {result['action'].upper()} {result['name']} "
                 f"(vmid={result['vmid']}): {result.get('detail')}"

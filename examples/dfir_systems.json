@@ -1,0 +1,22 @@
+{
+  "case_id": "INC-2026-0142",
+  "collected_at": "2026-06-01T12:00:00Z",
+  "systems": [
+    {
+      "id": 100,
+      "hostname": "web-01",
+      "power_state": "off",
+      "cpu_count": 2,
+      "ram_bytes": 4294967296,
+      "site": "eu-west-1a"
+    },
+    {
+      "id": 101,
+      "hostname": "dev-api-01",
+      "power_state": "on",
+      "cpu_count": 4,
+      "ram_bytes": 8589934592,
+      "site": "eu-west-1b"
+    }
+  ]
+}

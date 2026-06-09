@@ -1,0 +1,16 @@
+source: aws
+
+aws:
+  region: eu-west-1
+  profile: default
+  vmid_tag: converger:vmid
+  name_tag: Name
+  scope_tag:
+    key: converger
+    value: managed
+
+artifacts:
+  current: current.json
+  plan: plan.json
+  result: result.json
+  post_apply: post_apply.json

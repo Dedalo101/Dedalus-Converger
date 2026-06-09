@@ -1,5 +1,8 @@
 # Copy to converger.yaml and fill in your Proxmox API token details.
 # Environment substitution is supported: ${PROXMOX_TOKEN_VALUE}
+# source: proxmox | aws | hetzner | replay | dfir
+
+source: proxmox
 
 proxmox:
   host: pve.example.com
@@ -13,3 +16,4 @@ artifacts:
   current: current.json
   plan: plan.json
   result: result.json
+  post_apply: post_apply.json

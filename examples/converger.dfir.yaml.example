@@ -1,0 +1,21 @@
+source: dfir
+
+dfir:
+  format: envelope
+  entities_key: systems
+  field_map:
+    vmid: id
+    name: hostname
+    status: power_state
+    cpus: cpu_count
+    maxmem: ram_bytes
+    node: site
+  status_map:
+    on: running
+    off: stopped
+    online: running
+    offline: stopped
+
+artifacts:
+  current: current.json
+  plan: plan.json

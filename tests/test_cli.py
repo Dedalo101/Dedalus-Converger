@@ -62,3 +62,97 @@ def test_apply_refuses_replay_mode():
 
     assert result.exit_code == 1
     assert "refused" in result.output.lower()
+
+
+def test_apply_dry_run(tmp_path: Path):
+    runner = CliRunner()
+    config_file = tmp_path / "converger.yaml"
+    config_file.write_text(
+        """
+source: proxmox
+proxmox:
+  host: pve.local
+  user: root@pam
+  token_name: converger
+  token_value: secret
+artifacts:
+  current: current.json
+  plan: plan.json
+  result: result.json
+""".strip(),
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(
+        cli,
+        [
+            "-c",
+            str(config_file),
+            "apply",
+            "--desired",
+            "examples/desired.yaml",
+            "--replay",
+            "examples/replay.json",
+            "--dry-run",
+        ],
+    )
+
+    assert result.exit_code == 1
+    assert "refused" in result.output.lower()
+
+
+def test_apply_dry_run_without_replay(tmp_path: Path, monkeypatch):
+    runner = CliRunner()
+    config_file = tmp_path / "converger.yaml"
+    result_file = tmp_path / "result.json"
+    config_file.write_text(
+        f"""
+source: proxmox
+proxmox:
+  host: pve.local
+  user: root@pam
+  token_name: converger
+  token_value: secret
+artifacts:
+  result: {result_file}
+""".strip(),
+        encoding="utf-8",
+    )
+
+    from converger import cli as cli_module
+
+    def fake_observe(*args, **kwargs):
+        from converger.model import VMState
+
+        return (
+            [
+                VMState(vmid=100, name="web-01", status="stopped", node="pve1"),
+                VMState(
+                    vmid=101,
+                    name="dev-api-01",
+                    status="running",
+                    cpus=4,
+                    maxmem=8589934592,
+                    node="pve1",
+                ),
+            ],
+            "proxmox",
+        )
+
+    monkeypatch.setattr(cli_module, "observe_from_config", fake_observe)
+
+    result = runner.invoke(
+        cli,
+        [
+            "-c",
+            str(config_file),
+            "apply",
+            "--desired",
+            "examples/desired.yaml",
+            "--dry-run",
+        ],
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "DRY-RUN" in result.output
+    assert result_file.exists()
