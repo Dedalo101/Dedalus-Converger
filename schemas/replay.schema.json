@@ -18,7 +18,10 @@
       "cpus": { "type": "integer", "minimum": 1 },
       "maxmem": { "type": "integer", "minimum": 1 },
       "source": { "type": "string", "default": "replay" },
-      "node": { "type": "string" }
+      "node": { "type": "string" },
+      "external_id": { "type": "string" },
+      "instance_type": { "type": "string" },
+      "server_type": { "type": "string" }
     }
   }
 }

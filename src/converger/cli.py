@@ -6,11 +6,12 @@ import click
 import yaml
 
 from . import contract
-from .adapters.proxmox_apply import ProxmoxApplier
+from .appliers import APPLICABLE_SOURCES, create_applier
 from .apply import apply as apply_steps
 from .apply import audit as audit_steps
 from .artifacts import write_current, write_plan, write_post_apply
-from .config import ConvergerConfig, load_config, require_proxmox
+from .config import ConvergerConfig, load_config
+from .dfir_presets import PRESET_NAMES
 from .model import Desired
 from .observe import observe_from_config
 from .plan import plan
@@ -45,11 +46,21 @@ def _source_options():
     )
 
 
+def _dfir_preset_option():
+    return click.option(
+        "--dfir-preset",
+        type=click.Choice(sorted(PRESET_NAMES)),
+        default=None,
+        help="DFIR import preset (velociraptor, kape)",
+    )
+
+
 @cli.command()
 @click.option("--desired", "-d", type=click.Path(exists=True), required=True)
 @click.option("--replay", "-r", type=click.Path(exists=True))
 @click.option("--dfir", type=click.Path(exists=True))
 @_source_options()
+@_dfir_preset_option()
 @click.pass_context
 def audit(
     ctx: click.Context,
@@ -57,12 +68,17 @@ def audit(
     replay: str | None,
     dfir: str | None,
     source: str | None,
+    dfir_preset: str | None,
 ) -> None:
     """Audit mode — zero side effects, print plan."""
     config: ConvergerConfig = ctx.obj["config"]
     try:
         current, resolved = _run_observation(
-            config, source=source, replay=replay, dfir=dfir
+            config,
+            source=source,
+            replay=replay,
+            dfir=dfir,
+            dfir_preset=dfir_preset,
         )
         current_path = write_current(current, config.artifacts.current)
         desired_objs = _load_desired(desired)
@@ -80,6 +96,7 @@ def audit(
 @click.option("--replay", "-r", type=click.Path(exists=True))
 @click.option("--dfir", type=click.Path(exists=True))
 @_source_options()
+@_dfir_preset_option()
 @click.option("--output", "-o", type=click.Path(), default=None)
 @click.pass_context
 def plan_cmd(
@@ -88,6 +105,7 @@ def plan_cmd(
     replay: str | None,
     dfir: str | None,
     source: str | None,
+    dfir_preset: str | None,
     output: str | None,
 ) -> None:
     """Plan mode — write structured plan.json."""
@@ -95,7 +113,11 @@ def plan_cmd(
     output_path = output or config.artifacts.plan
     try:
         current, resolved = _run_observation(
-            config, source=source, replay=replay, dfir=dfir
+            config,
+            source=source,
+            replay=replay,
+            dfir=dfir,
+            dfir_preset=dfir_preset,
         )
         current_path = write_current(current, config.artifacts.current)
         desired_objs = _load_desired(desired)
@@ -112,6 +134,7 @@ def plan_cmd(
 @cli.command("apply")
 @click.option("--desired", "-d", type=click.Path(exists=True), required=True)
 @click.option("--replay", "-r", type=click.Path(exists=True))
+@_source_options()
 @click.option("--dry-run", is_flag=True, help="Record API calls without executing")
 @click.option("--confirm", is_flag=True, help="Explicit confirmation required to apply")
 @click.pass_context
@@ -119,10 +142,11 @@ def apply_cmd(
     ctx: click.Context,
     desired: str,
     replay: str | None,
+    source: str | None,
     dry_run: bool,
     confirm: bool,
 ) -> None:
-    """Apply mode — mutating phase (Proxmox only)."""
+    """Apply mode — mutating phase (proxmox, aws, hetzner)."""
     config: ConvergerConfig = ctx.obj["config"]
 
     if replay:
@@ -135,9 +159,17 @@ def apply_cmd(
         )
         sys.exit(1)
 
+    apply_source = source or config.source
+    if apply_source not in APPLICABLE_SOURCES:
+        click.echo(
+            f"Apply is not supported for source {apply_source!r}. "
+            f"Supported: {sorted(APPLICABLE_SOURCES)}",
+            err=True,
+        )
+        sys.exit(1)
+
     try:
-        proxmox = require_proxmox(config)
-        current, resolved = _run_observation(config, source="proxmox")
+        current, resolved = _run_observation(config, source=apply_source)
         current_path = write_current(current, config.artifacts.current)
         desired_objs = _load_desired(desired)
         steps = plan(current, desired_objs)
@@ -145,9 +177,11 @@ def apply_cmd(
         click.echo(f"Observation ({resolved}) written to {current_path}")
 
         if not dry_run:
-            click.confirm(f"Apply {len(safe_steps)} changes?", abort=True)
+            click.confirm(
+                f"Apply {len(safe_steps)} changes via {resolved}?", abort=True
+            )
 
-        applier = ProxmoxApplier(proxmox.as_adapter_config(), dry_run=dry_run)
+        applier = create_applier(config, apply_source, dry_run=dry_run)
         results = apply_steps(
             safe_steps,
             executor=applier.apply,
@@ -164,7 +198,7 @@ def apply_cmd(
             click.echo("Dry-run complete. No mutations executed.")
             return
 
-        post_current, _ = _run_observation(config, source="proxmox")
+        post_current, _ = _run_observation(config, source=apply_source)
         post_path = write_current(post_current, config.artifacts.post_apply)
         report = verify_convergence(post_current, desired_objs)
         report_path = write_post_apply(report, _post_apply_report_path(config))
@@ -189,12 +223,14 @@ def _run_observation(
     source: str | None = None,
     replay: str | None = None,
     dfir: str | None = None,
+    dfir_preset: str | None = None,
 ):
     return observe_from_config(
         config,
         source=source,
         replay_path=replay,
         dfir_path=dfir,
+        dfir_preset=dfir_preset,
     )
 
 

@@ -11,6 +11,9 @@ class VMState:
     maxmem: Optional[int] = None
     source: str = "live"
     node: Optional[str] = None
+    external_id: Optional[str] = None
+    instance_type: Optional[str] = None
+    server_type: Optional[str] = None
 
 
 @dataclass
@@ -20,6 +23,8 @@ class Desired:
     target: Literal["running", "stopped"]
     cpus: Optional[int] = None
     memory: Optional[int] = None
+    instance_type: Optional[str] = None
+    server_type: Optional[str] = None
 
 
 @dataclass
@@ -31,3 +36,6 @@ class PlanStep:
     node: Optional[str] = None
     target_cpus: Optional[int] = None
     target_memory: Optional[int] = None
+    external_id: Optional[str] = None
+    target_instance_type: Optional[str] = None
+    target_server_type: Optional[str] = None

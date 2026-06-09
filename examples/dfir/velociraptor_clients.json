@@ -1,0 +1,22 @@
+{
+  "case_id": "VR-2026-0088",
+  "collected_at": "2026-06-01T09:30:00Z",
+  "items": [
+    {
+      "client_id": 100,
+      "hostname": "web-01",
+      "last_seen": "online",
+      "cpu_count": 2,
+      "memory_bytes": 4294967296,
+      "site": "eu-west-1a"
+    },
+    {
+      "client_id": 101,
+      "hostname": "dev-api-01",
+      "last_seen": "offline",
+      "cpu_count": 4,
+      "memory_bytes": 8589934592,
+      "site": "eu-west-1b"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ from .adapters import hetzner  # noqa: F401 - register adapter
 from .adapters import proxmox  # noqa: F401 - register adapter
 from .adapters import replay  # noqa: F401 - register adapter
 from .config import ConvergerConfig, adapter_config_for_source
+from .dfir_presets import merge_dfir_config
 from .model import VMState
 
 
@@ -23,6 +24,7 @@ def observe_from_config(
     source: Optional[str] = None,
     replay_path: Optional[str] = None,
     dfir_path: Optional[str] = None,
+    dfir_preset: Optional[str] = None,
 ) -> tuple[List[VMState], str]:
     resolved_source = source or config.source
     if replay_path:
@@ -30,12 +32,18 @@ def observe_from_config(
     elif dfir_path:
         resolved_source = "dfir"
 
-    adapter_config = adapter_config_for_source(
-        config,
-        resolved_source,
-        replay_path=replay_path,
-        dfir_path=dfir_path,
-    )
+    if resolved_source == "dfir" and dfir_preset:
+        dfir_config = merge_dfir_config(config.dfir, dfir_preset)
+        if not dfir_path:
+            raise ValueError("DFIR source requires --dfir path")
+        adapter_config = dfir_config.as_adapter_config(dfir_path)
+    else:
+        adapter_config = adapter_config_for_source(
+            config,
+            resolved_source,
+            replay_path=replay_path,
+            dfir_path=dfir_path,
+        )
     return observe(resolved_source, adapter_config), resolved_source
 
 

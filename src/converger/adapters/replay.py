@@ -35,6 +35,9 @@ class ReplayAdapter(ObservationAdapter):
                 maxmem=item.get("maxmem"),
                 source=item.get("source", "replay"),
                 node=item.get("node"),
+                external_id=item.get("external_id"),
+                instance_type=item.get("instance_type"),
+                server_type=item.get("server_type"),
             )
             for item in validated
         ]

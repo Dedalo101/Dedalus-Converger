@@ -95,6 +95,8 @@ class AwsEc2Adapter(ObservationAdapter):
                         maxmem=None,
                         source="aws",
                         node=node,
+                        external_id=instance.get("InstanceId"),
+                        instance_type=instance.get("InstanceType"),
                     )
                 )
 

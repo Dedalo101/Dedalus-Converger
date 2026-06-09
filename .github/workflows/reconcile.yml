@@ -1,0 +1,62 @@
+name: Reconcile
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Reconciliation mode
+        type: choice
+        options:
+          - audit
+          - plan
+        default: plan
+      source:
+        description: Observation source
+        type: choice
+        options:
+          - replay
+          - proxmox
+          - aws
+          - hetzner
+        default: replay
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    env:
+      RECONCILE_MODE: ${{ github.event.inputs.mode || 'plan' }}
+      RECONCILE_SOURCE: ${{ github.event.inputs.source || 'replay' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -e ".[dev,aws]"
+
+      - name: Run reconciliation
+        run: bash scripts/reconcile.sh "$RECONCILE_MODE"
+        env:
+          CONVERGER_SOURCE: ${{ env.RECONCILE_SOURCE }}
+          REPLAY_PATH: examples/replay.json
+          PROXMOX_HOST: ${{ secrets.PROXMOX_HOST }}
+          PROXMOX_USER: ${{ secrets.PROXMOX_USER }}
+          PROXMOX_TOKEN_NAME: ${{ secrets.PROXMOX_TOKEN_NAME }}
+          PROXMOX_TOKEN_VALUE: ${{ secrets.PROXMOX_TOKEN_VALUE }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          HETZNER_API_TOKEN: ${{ secrets.HETZNER_API_TOKEN }}
+
+      - name: Upload reconciliation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: reconcile-${{ github.run_id }}
+          path: |
+            current.json
+            plan.json
+          if-no-files-found: warn

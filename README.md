@@ -101,6 +101,19 @@ converger apply --desired examples/desired.yaml --dry-run
 converger plan -c examples/converger.aws.yaml.example -d examples/desired.yaml -s aws
 converger plan -c examples/converger.dfir.yaml.example -d examples/desired.yaml --dfir examples/dfir_systems.json
 
+# DFIR import presets (Velociraptor / KAPE field maps)
+converger plan -d examples/desired.yaml --dfir examples/dfir/velociraptor_clients.json --dfir-preset velociraptor
+converger plan -d examples/desired.yaml --dfir examples/dfir/kape_hosts.json --dfir-preset kape
+
+# Cloud apply (dry-run records API calls; live requires --confirm)
+converger apply -c examples/converger.aws.yaml.example -d examples/desired.yaml -s aws --dry-run
+converger apply -d examples/desired.yaml -s hetzner --dry-run
+
+# Scheduled reconciliation (cron / GitHub Actions)
+bash scripts/reconcile.sh plan                    # replay default
+CONVERGER_SOURCE=proxmox bash scripts/reconcile.sh audit
+# GitHub Actions: .github/workflows/reconcile.yml (every 6h + workflow_dispatch)
+
 # Artifacts emitted on every run:
 # current.json          — observation snapshot
 # plan.json             — reconciliation steps

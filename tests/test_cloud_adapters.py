@@ -44,6 +44,8 @@ def test_aws_adapter_maps_tagged_instances(mock_boto3):
     assert states[0].vmid == 100
     assert states[0].status == "running"
     assert states[0].source == "aws"
+    assert states[0].external_id == "i-abc"
+    assert states[0].instance_type == "t3.small"
 
 
 @patch("converger.adapters.hetzner.urllib.request.urlopen")
@@ -54,7 +56,7 @@ def test_hetzner_adapter_maps_servers(mock_urlopen):
                 "id": 101,
                 "name": "dev-api-01",
                 "status": "running",
-                "server_type": {"cores": 4, "memory": 8},
+                "server_type": {"name": "cx21", "cores": 4, "memory": 8},
                 "datacenter": {"name": "fsn1-dc14"},
             }
         ]
@@ -70,3 +72,5 @@ def test_hetzner_adapter_maps_servers(mock_urlopen):
     assert states[0].vmid == 101
     assert states[0].cpus == 4
     assert states[0].source == "hetzner"
+    assert states[0].external_id == "101"
+    assert states[0].server_type == "cx21"

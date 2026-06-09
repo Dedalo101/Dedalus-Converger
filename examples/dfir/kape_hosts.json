@@ -1,0 +1,22 @@
+{
+  "case_id": "KAPE-2026-0042",
+  "collected_at": "2026-06-02T14:00:00Z",
+  "hosts": [
+    {
+      "system_id": 100,
+      "computer_name": "WEB-01",
+      "boot_state": "booted",
+      "processor_count": 2,
+      "physical_memory_bytes": 4294967296,
+      "collection_host": "analyst-ws-01"
+    },
+    {
+      "system_id": 101,
+      "computer_name": "DEV-API-01",
+      "boot_state": "shutdown",
+      "processor_count": 4,
+      "physical_memory_bytes": 8589934592,
+      "collection_host": "analyst-ws-01"
+    }
+  ]
+}

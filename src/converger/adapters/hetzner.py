@@ -34,6 +34,7 @@ class HetznerAdapter(ObservationAdapter):
 
         for server in servers:
             server_type = server.get("server_type") or {}
+            server_type_name = server_type.get("name")
             states.append(
                 VMState(
                     vmid=int(server["id"]),
@@ -47,6 +48,8 @@ class HetznerAdapter(ObservationAdapter):
                     ),
                     source="hetzner",
                     node=server.get("datacenter", {}).get("name"),
+                    external_id=str(server["id"]),
+                    server_type=server_type_name,
                 )
             )
 
