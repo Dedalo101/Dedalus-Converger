@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dedalus Converger — Reconciliation with Refusal</title>
+    <meta
+      name="description"
+      content="Domain-agnostic reconciliation for Proxmox, AWS, Hetzner, and DFIR. Observe, plan, refuse partial truth, apply only when safe."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">Dedalus Converger</a>
+        <nav>
+          <a href="#pricing">Pricing</a>
+          <a href="#features">Features</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Proprietary · Dedalo101</p>
+            <h1>Reconciliation with refusal.</h1>
+            <p class="lead">
+              Converge declared intent against observed reality — and refuse to
+              act when truth is incomplete. Proxmox, AWS, Hetzner, Velociraptor,
+              and KAPE in one spine.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#pricing">View pricing</a>
+              <a class="btn btn-secondary" href="mailto:licensing@dedalo101.com"
+                >Request license</a
+              >
+            </div>
+            <p class="pipeline">Observe → Plan → Safety → Audit | Apply</p>
+          </div>
+          <div class="hero-card">
+            <pre><code>$ converger plan -d desired.yaml --replay replay.json
+Observation (replay) written to current.json
+Plan written to plan.json
+
+$ converger apply -s aws --dry-run
+DRY-RUN START web-01 (vmid=100) -> ec2.StartInstances</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="container">
+          <h2>Built for operators who distrust blind automation</h2>
+          <div class="feature-grid">
+            <article>
+              <h3>Refusal semantics</h3>
+              <p>
+                Unknown state or missing VMs produce an empty plan. The system
+                never treats absence as stopped.
+              </p>
+            </article>
+            <article>
+              <h3>Cloud + hypervisor apply</h3>
+              <p>
+                Start, stop, and resize on Proxmox, AWS EC2, and Hetzner Cloud
+                with dry-run and explicit confirm gates.
+              </p>
+            </article>
+            <article>
+              <h3>DFIR import presets</h3>
+              <p>
+                Velociraptor and KAPE field maps turn forensic exports into the
+                same VMState contract as live observation.
+              </p>
+            </article>
+            <article>
+              <h3>Audit artifacts</h3>
+              <p>
+                Every run emits current, plan, result, and post-apply convergence
+                reports as structured JSON.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="pricing">
+        <div class="container">
+          <h2>Pricing</h2>
+          <p class="section-lead">
+            The engine is proprietary. Tiers unlock scale, hosting, collaboration,
+            and compliance — not refusal semantics.
+          </p>
+
+          <div class="pricing-grid">
+            <article class="tier">
+              <h3>Free</h3>
+              <p class="price">$0</p>
+              <p class="tier-for">Learning, CI, homelab</p>
+              <ul>
+                <li>CLI audit / plan / apply</li>
+                <li>Replay + DFIR observe</li>
+                <li>Self-hosted cron / GitHub Actions</li>
+                <li>Up to 10 desired VMs</li>
+                <li>Community support</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:licensing@dedalo101.com?subject=Converger%20Free%20Tier"
+                >Get access</a
+              >
+            </article>
+
+            <article class="tier tier-featured">
+              <p class="badge">Popular</p>
+              <h3>Pro</h3>
+              <p class="price">from $49<span>/mo</span></p>
+              <p class="tier-for">Production ops teams</p>
+              <ul>
+                <li>Managed scheduled reconciliation</li>
+                <li>Dashboard + drift alerts</li>
+                <li>Apply approval workflow</li>
+                <li>90-day artifact retention</li>
+                <li>Up to 100 desired VMs</li>
+              </ul>
+              <a class="btn btn-primary" href="mailto:licensing@dedalo101.com?subject=Converger%20Pro%20Trial"
+                >Start trial</a
+              >
+            </article>
+
+            <article class="tier">
+              <h3>DFIR</h3>
+              <p class="price">from $199<span>/mo</span></p>
+              <p class="tier-for">Incident response teams</p>
+              <ul>
+                <li>Case workspace + evidence exports</li>
+                <li>Velociraptor / KAPE presets</li>
+                <li>Audit-only by default</li>
+                <li>5 analysts · 50 systems/case</li>
+                <li>24h support SLA</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:licensing@dedalo101.com?subject=Converger%20DFIR%20Pilot"
+                >Book pilot</a
+              >
+            </article>
+
+            <article class="tier">
+              <h3>MSP</h3>
+              <p class="price">from $299<span>/mo</span></p>
+              <p class="tier-for">Managed service providers</p>
+              <ul>
+                <li>White-label dashboard</li>
+                <li>Per-client environments</li>
+                <li>Client drift reports</li>
+                <li>+$15/client/mo (volume tiers)</li>
+                <li>Onboarding + API hooks</li>
+              </ul>
+              <a class="btn btn-secondary" href="mailto:licensing@dedalo101.com?subject=Converger%20MSP"
+                >Talk to sales</a
+              >
+            </article>
+          </div>
+
+          <div class="matrix-wrap">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Capability</th>
+                  <th>Free</th>
+                  <th>Pro</th>
+                  <th>DFIR</th>
+                  <th>MSP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Live observe (Proxmox, AWS, Hetzner)</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                </tr>
+                <tr>
+                  <td>Apply + dry-run</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>Gated</td>
+                  <td>Per-client</td>
+                </tr>
+                <tr>
+                  <td>Hosted scheduler + alerts</td>
+                  <td>—</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                </tr>
+                <tr>
+                  <td>Evidence / chain-of-custody</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>✓</td>
+                  <td>Optional</td>
+                </tr>
+                <tr>
+                  <td>White-label multi-tenant</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>✓</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="faq">
+        <div class="container">
+          <h2>FAQ</h2>
+          <dl>
+            <dt>Is the software open source?</dt>
+            <dd>
+              No. Dedalus Converger is proprietary software owned by Dedalo101.
+              Commercial and evaluation licenses are available on request.
+            </dd>
+            <dt>Why pay if the CLI exists?</dt>
+            <dd>
+              Paid tiers add hosted reconciliation, alerting, artifact history,
+              approval workflows, and SLAs — so apply is not tied to one
+              engineer's laptop.
+            </dd>
+            <dt>Can DFIR customers apply changes?</dt>
+            <dd>
+              Yes, but cases default to audit/plan only. Apply requires explicit
+              case-lead unlock, matching the CLI's <code>--confirm</code> gate.
+            </dd>
+          </dl>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Dedalo101. All rights reserved.</p>
+        <p>
+          <a href="mailto:licensing@dedalo101.com">licensing@dedalo101.com</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

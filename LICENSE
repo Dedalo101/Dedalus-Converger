@@ -1,21 +1,43 @@
-MIT License
+Proprietary Software License Agreement
 
-Copyright (c) 2026 Dedalo101
+Copyright (c) 2026 Dedalo101. All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software and associated documentation files (the "Software"), including
+Dedalus Converger and all related source code, are the exclusive property of
+Dedalo101.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. GRANT OF LICENSE
+   No license is granted to use, copy, modify, merge, publish, distribute,
+   sublicense, lease, sell, or otherwise exploit the Software, in whole or in
+   part, without prior written authorization from Dedalo101.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. AUTHORIZED USE
+   Access to the Software is permitted only for individuals and organizations
+   that have entered into a separate written agreement with Dedalo101, or for
+   Dedalo101 personnel and contractors acting under its direction.
+
+3. RESTRICTIONS
+   You may not:
+   - Reverse engineer, decompile, or disassemble the Software
+   - Remove or alter proprietary notices
+   - Use the Software to provide competing hosted services without authorization
+   - Transfer, assign, or sublicense rights without written consent
+
+4. COMMERCIAL LICENSING
+   Commercial, MSP, DFIR, and enterprise licenses are available from Dedalo101.
+   Contact: licensing@dedalo101.com
+
+5. DISCLAIMER
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+   DEDALO101 BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN
+   AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. TERMINATION
+   Any unauthorized use terminates all rights immediately. Dedalo101 reserves
+   all remedies available at law or in equity.
+
+Dedalo101
+https://dedalo101.com

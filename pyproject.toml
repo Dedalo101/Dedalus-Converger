@@ -7,7 +7,7 @@ name = "dedalus-converger"
 version = "0.1.0"
 description = "Domain-agnostic reconciliation engine with explicit refusal semantics"
 authors = [{name = "Dedalo Smith"}]
-license = {text = "MIT"}
+license = {text = "Proprietary"}
 requires-python = ">=3.9"
 dependencies = [
     "proxmoxer>=2.0",

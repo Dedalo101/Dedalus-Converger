@@ -11,6 +11,10 @@ If truth is incomplete, it does nothing.
 
 **Domain-agnostic reconciliation with explicit refusal semantics.**
 
+**License:** Proprietary — © 2026 Dedalo101. All rights reserved. See [LICENSE](LICENSE).  
+**Product site:** [dedalus-converger.pages.dev](https://dedalus-converger.pages.dev) (Cloudflare Pages)  
+**Licensing:** licensing@dedalo101.com
+
 Dedalus Converger is a reconciliation engine that encodes restraint.  
 It converges declared intent against observed reality — and refuses to act when truth is incomplete.
 
@@ -79,10 +83,15 @@ See `docs/ARCHITECTURE.md` for the full diagram and contract.
 ## Quick Start
 
 ```bash
+# Requires authorized access — contact licensing@dedalo101.com
 git clone https://github.com/Dedalo101/Dedalus-Converger.git
 cd Dedalus-Converger
 python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
+
+# Deploy pricing / product site to Cloudflare Pages
+npx wrangler login
+bash scripts/deploy-cloudflare.sh
 
 # Replay-based audit (no live infra required)
 converger audit --desired examples/desired.yaml --replay examples/replay.json
