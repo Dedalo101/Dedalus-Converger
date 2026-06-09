@@ -79,26 +79,21 @@ See `docs/ARCHITECTURE.md` for the full diagram and contract.
 ## Quick Start
 
 ```bash
-pip install dedalus-converger
+git clone https://github.com/Dedalo101/Dedalus-Converger.git
+cd Dedalus-Converger
+python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
 
-# Audit current state against desired (dry-run)
-converger audit --desired examples/desired.yaml
+# Replay-based audit (no live infra required)
+converger audit --desired examples/desired.yaml --replay examples/replay.json
 
-# Write plan to JSON
-converger plan --desired examples/desired.yaml --output plan.json
+# Write plan artifact
+converger plan --desired examples/desired.yaml --replay examples/replay.json --output plan.json
 
-# Apply changes (requires confirmation)
-converger apply --desired examples/desired.yaml
+# Apply against live Proxmox (requires credentials + --confirm)
+converger apply --desired examples/desired.yaml --confirm
 
-##DEV
-
-git clone https://github.com/Dedalo101/dedalus-converger.git
-cd dedalus-converger
-pip install -e .[dev]
-
-pytest tests/ -v          # Negative proofs must pass
-ruff check .              # Lint
-black --check .           # Format
-git add README.md
-git commit -m "docs: 
-git push origin main
+pytest tests/ -v
+ruff check .
+black --check .
+```

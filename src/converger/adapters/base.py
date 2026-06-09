@@ -6,7 +6,8 @@ from ..model import VMState
 
 class ObservationError(Exception):
     """Raised when observation cannot be completed honestly and completely.
-Adapters MUST raise this instead of returning partial/invalid data."""
+    Adapters MUST raise this instead of returning partial/invalid data."""
+
     pass
 
 
@@ -30,5 +31,5 @@ class ObservationAdapter(ABC):
     @abstractmethod
     def observe(self) -> List[VMState]:
         """Must return complete, honest observation or raise ObservationError.
-Never retry. Never partial results. Never side effects."""
+        Never retry. Never partial results. Never side effects."""
         raise NotImplementedError

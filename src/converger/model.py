@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Literal, Optional, List
+from typing import Literal, Optional
+
 
 @dataclass(frozen=True)
 class VMState:
@@ -10,6 +11,7 @@ class VMState:
     maxmem: Optional[int] = None
     source: str = "live"
 
+
 @dataclass
 class Desired:
     vmid: int
@@ -17,6 +19,7 @@ class Desired:
     target: Literal["running", "stopped"]
     cpus: Optional[int] = None
     memory: Optional[int] = None
+
 
 @dataclass
 class PlanStep:

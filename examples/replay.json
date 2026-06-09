@@ -1,0 +1,18 @@
+[
+  {
+    "vmid": 100,
+    "name": "web-01",
+    "status": "stopped",
+    "cpus": 2,
+    "maxmem": 4294967296,
+    "source": "replay"
+  },
+  {
+    "vmid": 101,
+    "name": "dev-api-01",
+    "status": "running",
+    "cpus": 4,
+    "maxmem": 8589934592,
+    "source": "replay"
+  }
+]
