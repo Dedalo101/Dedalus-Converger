@@ -1,55 +1,82 @@
-Commercial Software License Agreement
+Commercial Software License Agreement — Core Engine
 
 Copyright (c) 2026 Dedalo101. All Rights Reserved.
 
-This software and associated documentation files (the "Software"), including
-Dedalus Converger and all related source code, are the exclusive property of
-Dedalo101. The Software is offered only under commercial license terms.
+This agreement governs the proprietary components of Dedalus Converger
+(the "Core Engine"). Open adapter components are licensed separately under
+LICENSE-ADAPTERS (Apache 2.0). See README.md for the full licensing model.
+
+PROPRIETARY SCOPE
+
+The Core Engine includes, without limitation:
+
+  - Reconciliation spine: observe, plan, safety, apply
+  - Safety guarantees and policy enforcement
+  - Multi-tenant orchestration
+  - Audit trails, compliance artifacts, and hosted service infrastructure
+  - Enterprise adapters (AWS, Hetzner, DFIR presets, and SaaS-only integrations)
+  - CLI orchestration beyond basic audit/plan against open adapters
 
 1. NO GRANT WITHOUT AGREEMENT
+
    No license is granted to use, copy, modify, merge, publish, distribute,
-   sublicense, lease, sell, host, or otherwise exploit the Software, in whole
-   or in part, without a signed commercial license agreement with Dedalo101.
+   sublicense, lease, sell, host, or otherwise exploit the Core Engine,
+   in whole or in part, without a signed commercial license agreement
+   with Dedalo101.
 
-2. COMMERCIAL USE ONLY
-   All production, internal, hosted, MSP, DFIR, and enterprise use requires a
-   paid commercial license. Evaluation or trial use requires prior written
-   approval and is limited to the scope and term stated in that approval.
+2. OPEN COMPONENTS DO NOT IMPLY CORE RIGHTS
 
-3. AUTHORIZED ACCESS
-   Access to the Software is permitted only for:
+   Use of Apache-licensed adapter framework code (see LICENSE-ADAPTERS)
+   does not grant any right to modify, redistribute, or host the Core
+   Engine. Adapter contributions remain separable; the spine stays
+   proprietary.
+
+3. COMMERCIAL USE ONLY
+
+   All production, internal, hosted, MSP, DFIR, and enterprise use of the
+   Core Engine requires a paid commercial or SaaS license. Evaluation
+   requires prior written approval and is limited to the approved scope
+   and term.
+
+4. AUTHORIZED ACCESS
+
+   Access to the Core Engine source is permitted only for:
    - Dedalo101 personnel and contractors acting under its direction
    - Customers with an active, written commercial license agreement
+   - Adapter partners with executed NDA and approved collaborator access
 
-4. RESTRICTIONS
+5. RESTRICTIONS
+
    You may not:
-   - Use the Software without a valid commercial license
-   - Reverse engineer, decompile, or disassemble the Software
+   - Use the Core Engine without a valid commercial license
+   - Reverse engineer, decompile, or disassemble the Core Engine
    - Remove or alter proprietary notices
-   - Publish, mirror, or redistribute source code or binaries
-   - Use the Software to provide competing hosted services without authorization
+   - Publish, mirror, or redistribute Core Engine source or binaries
+   - Provide competing hosted reconciliation services without authorization
    - Transfer, assign, or sublicense rights without written consent
 
-5. LICENSE TIERS
-   Commercial licenses (Free evaluation, Pro, DFIR, MSP, and Enterprise) are
-   issued by Dedalo101 and define permitted scope, seats, environments, and
-   support terms. Unauthorized use outside the licensed tier is prohibited.
+6. SAAS & LICENSE TIERS
 
-6. CONTACT
-   Commercial licensing: licensing@dedalo101.com
+   Commercial licenses (Pro, DFIR, MSP, Enterprise) and SaaS subscriptions
+   are issued by Dedalo101 and define permitted scope, seats, environments,
+   and support terms.
+
+   Contact: licensing@dedalo101.com
    https://dedalo101.com
 
 7. DISCLAIMER
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
-   DEDALO101 BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN
-   AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
-   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+   THE CORE ENGINE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+   IN NO EVENT SHALL DEDALO101 BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+   FROM, OUT OF, OR IN CONNECTION WITH THE CORE ENGINE.
 
 8. TERMINATION
-   Any unauthorized use terminates all rights immediately. Dedalo101 reserves
-   all remedies available at law or in equity.
+
+   Any unauthorized use terminates all rights immediately. Dedalo101
+   reserves all remedies available at law or in equity.
 
 Dedalo101
 https://dedalo101.com
