@@ -1,33 +1,45 @@
-Proprietary Software License Agreement
+Commercial Software License Agreement
 
 Copyright (c) 2026 Dedalo101. All Rights Reserved.
 
 This software and associated documentation files (the "Software"), including
 Dedalus Converger and all related source code, are the exclusive property of
-Dedalo101.
+Dedalo101. The Software is offered only under commercial license terms.
 
-1. GRANT OF LICENSE
+1. NO GRANT WITHOUT AGREEMENT
    No license is granted to use, copy, modify, merge, publish, distribute,
-   sublicense, lease, sell, or otherwise exploit the Software, in whole or in
-   part, without prior written authorization from Dedalo101.
+   sublicense, lease, sell, host, or otherwise exploit the Software, in whole
+   or in part, without a signed commercial license agreement with Dedalo101.
 
-2. AUTHORIZED USE
-   Access to the Software is permitted only for individuals and organizations
-   that have entered into a separate written agreement with Dedalo101, or for
-   Dedalo101 personnel and contractors acting under its direction.
+2. COMMERCIAL USE ONLY
+   All production, internal, hosted, MSP, DFIR, and enterprise use requires a
+   paid commercial license. Evaluation or trial use requires prior written
+   approval and is limited to the scope and term stated in that approval.
 
-3. RESTRICTIONS
+3. AUTHORIZED ACCESS
+   Access to the Software is permitted only for:
+   - Dedalo101 personnel and contractors acting under its direction
+   - Customers with an active, written commercial license agreement
+
+4. RESTRICTIONS
    You may not:
+   - Use the Software without a valid commercial license
    - Reverse engineer, decompile, or disassemble the Software
    - Remove or alter proprietary notices
+   - Publish, mirror, or redistribute source code or binaries
    - Use the Software to provide competing hosted services without authorization
    - Transfer, assign, or sublicense rights without written consent
 
-4. COMMERCIAL LICENSING
-   Commercial, MSP, DFIR, and enterprise licenses are available from Dedalo101.
-   Contact: licensing@dedalo101.com
+5. LICENSE TIERS
+   Commercial licenses (Free evaluation, Pro, DFIR, MSP, and Enterprise) are
+   issued by Dedalo101 and define permitted scope, seats, environments, and
+   support terms. Unauthorized use outside the licensed tier is prohibited.
 
-5. DISCLAIMER
+6. CONTACT
+   Commercial licensing: licensing@dedalo101.com
+   https://dedalo101.com
+
+7. DISCLAIMER
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
    FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -35,7 +47,7 @@ Dedalo101.
    AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
    CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-6. TERMINATION
+8. TERMINATION
    Any unauthorized use terminates all rights immediately. Dedalo101 reserves
    all remedies available at law or in equity.
 

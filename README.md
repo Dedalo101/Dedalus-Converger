@@ -11,7 +11,7 @@ If truth is incomplete, it does nothing.
 
 **Domain-agnostic reconciliation with explicit refusal semantics.**
 
-**License:** Proprietary — © 2026 Dedalo101. All rights reserved. See [LICENSE](LICENSE).  
+**License:** Commercial proprietary — © 2026 Dedalo101. All rights reserved. See [LICENSE](LICENSE). Not open source.
 **Product site:** [dedalus-converger.pages.dev](https://dedalus-converger.pages.dev) (Cloudflare Pages)  
 **Licensing:** licensing@dedalo101.com
 
