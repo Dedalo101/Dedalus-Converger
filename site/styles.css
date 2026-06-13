@@ -294,6 +294,23 @@ code {
   color: var(--muted);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lead strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 @media (max-width: 860px) {
   .hero-grid {
     grid-template-columns: 1fr;

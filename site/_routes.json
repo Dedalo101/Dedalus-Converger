@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/robots.txt",
+    "/sitemap.xml",
+    "/og-image.jpg",
+    "/styles.css",
+    "/404.html"
+  ]
+}

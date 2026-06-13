@@ -6,15 +6,127 @@
     <title>Dedalus Converger — Reconciliation with Refusal</title>
     <meta
       name="description"
+      content="Dedalus Converger is infrastructure reconciliation for Proxmox, AWS, and Hetzner — with refusal semantics, drift detection, dry-run apply, and DFIR presets for Velociraptor and KAPE."
+    />
+    <meta
+      name="keywords"
+      content="Proxmox automation, AWS reconciliation, Hetzner Cloud, infrastructure drift detection, DFIR Velociraptor, KAPE, VM reconciliation, dry-run apply, Dedalus Converger"
+    />
+    <meta name="author" content="Dedalo101" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://dedalus-converger.pages.dev/" />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dedalus Converger" />
+    <meta property="og:title" content="Dedalus Converger — Reconciliation with Refusal" />
+    <meta
+      property="og:description"
       content="Domain-agnostic reconciliation for Proxmox, AWS, Hetzner, and DFIR. Observe, plan, refuse partial truth, apply only when safe."
     />
+    <meta property="og:url" content="https://dedalus-converger.pages.dev/" />
+    <meta property="og:image" content="https://dedalus-converger.pages.dev/og-image.jpg" />
+    <meta property="og:image:alt" content="Dedalus Converger — reconciliation for Proxmox, AWS, Hetzner, and DFIR" />
+    <meta property="og:locale" content="en_GB" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dedalus Converger — Reconciliation with Refusal" />
+    <meta
+      name="twitter:description"
+      content="Proxmox, AWS, and Hetzner reconciliation with refusal semantics. DFIR-ready with Velociraptor and KAPE."
+    />
+    <meta name="twitter:image" content="https://dedalus-converger.pages.dev/og-image.jpg" />
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b0f14'/%3E%3Cpath d='M8 16h6l2-4 2 8 2-6h4' stroke='%235eead4' stroke-width='1.5' fill='none'/%3E%3C/svg%3E" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Dedalus Converger",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Linux, macOS, Windows",
+      "description": "Domain-agnostic infrastructure reconciliation for Proxmox, AWS EC2, Hetzner Cloud, and DFIR workflows. Refuses to apply when observation is incomplete.",
+      "url": "https://dedalus-converger.pages.dev/",
+      "image": "https://dedalus-converger.pages.dev/og-image.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dedalo101",
+        "url": "https://dedalo101.com"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "CLI audit, plan, apply — up to 10 desired VMs"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "49",
+          "priceCurrency": "USD",
+          "description": "Hosted reconciliation, dashboard, drift alerts — from $49/mo"
+        },
+        {
+          "@type": "Offer",
+          "name": "DFIR",
+          "price": "199",
+          "priceCurrency": "USD",
+          "description": "Velociraptor and KAPE presets, case workspace — from $199/mo"
+        },
+        {
+          "@type": "Offer",
+          "name": "MSP",
+          "price": "299",
+          "priceCurrency": "USD",
+          "description": "White-label multi-tenant reconciliation — from $299/mo"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is the software open source?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Dedalus Converger is proprietary software owned by Dedalo101. Commercial and evaluation licenses are available on request."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why pay if the CLI exists?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paid tiers add hosted reconciliation, alerting, artifact history, approval workflows, and SLAs — so apply is not tied to one engineer's laptop."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can DFIR customers apply changes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but cases default to audit/plan only. Apply requires explicit case-lead unlock, matching the CLI's --confirm gate."
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#">Dedalus Converger</a>
-        <nav>
+        <a class="brand" href="/">Dedalus Converger</a>
+        <nav aria-label="Primary">
           <a href="#pricing">Pricing</a>
           <a href="#features">Features</a>
           <a href="#faq">FAQ</a>
@@ -23,15 +135,19 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="container hero-grid">
           <div>
             <p class="eyebrow">Proprietary · Dedalo101</p>
-            <h1>Reconciliation with refusal.</h1>
+            <h1 id="hero-title">Reconciliation with refusal.</h1>
             <p class="lead">
-              Converge declared intent against observed reality — and refuse to
-              act when truth is incomplete. Proxmox, AWS, Hetzner, Velociraptor,
-              and KAPE in one spine.
+              Dedalus Converger is an <strong>AWS reconciliation tool</strong> and
+              <strong>Proxmox automation</strong> platform for teams that need
+              <strong>infrastructure drift detection</strong> without blind apply.
+              Compare declared intent to live state across Proxmox, AWS EC2, and
+              Hetzner Cloud — then refuse to act when truth is incomplete. Import
+              <strong>DFIR Velociraptor</strong> and <strong>KAPE</strong> exports into
+              the same VMState contract as live observation.
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#pricing">View pricing</a>
@@ -41,7 +157,7 @@
             </div>
             <p class="pipeline">Observe → Plan → Safety → Audit | Apply</p>
           </div>
-          <div class="hero-card">
+          <div class="hero-card" role="img" aria-label="Example converger CLI output for plan and dry-run apply on AWS">
             <pre><code>$ converger plan -d desired.yaml --replay replay.json
 Observation (replay) written to current.json
 Plan written to plan.json
@@ -52,9 +168,9 @@ DRY-RUN START web-01 (vmid=100) -> ec2.StartInstances</code></pre>
         </div>
       </section>
 
-      <section id="features" class="features">
+      <section id="features" class="features" aria-labelledby="features-title">
         <div class="container">
-          <h2>Built for operators who distrust blind automation</h2>
+          <h2 id="features-title">Built for operators who distrust blind automation</h2>
           <div class="feature-grid">
             <article>
               <h3>Refusal semantics</h3>
@@ -88,9 +204,9 @@ DRY-RUN START web-01 (vmid=100) -> ec2.StartInstances</code></pre>
         </div>
       </section>
 
-      <section id="pricing" class="pricing">
+      <section id="pricing" class="pricing" aria-labelledby="pricing-title">
         <div class="container">
-          <h2>Pricing</h2>
+          <h2 id="pricing-title">Pricing</h2>
           <p class="section-lead">
             The engine is proprietary. Tiers unlock scale, hosting, collaboration,
             and compliance — not refusal semantics.
@@ -165,46 +281,47 @@ DRY-RUN START web-01 (vmid=100) -> ec2.StartInstances</code></pre>
 
           <div class="matrix-wrap">
             <table class="matrix">
+              <caption class="sr-only">Feature comparison across pricing tiers</caption>
               <thead>
                 <tr>
-                  <th>Capability</th>
-                  <th>Free</th>
-                  <th>Pro</th>
-                  <th>DFIR</th>
-                  <th>MSP</th>
+                  <th scope="col">Capability</th>
+                  <th scope="col">Free</th>
+                  <th scope="col">Pro</th>
+                  <th scope="col">DFIR</th>
+                  <th scope="col">MSP</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Live observe (Proxmox, AWS, Hetzner)</td>
+                  <th scope="row">Live observe (Proxmox, AWS, Hetzner)</th>
                   <td>✓</td>
                   <td>✓</td>
                   <td>✓</td>
                   <td>✓</td>
                 </tr>
                 <tr>
-                  <td>Apply + dry-run</td>
+                  <th scope="row">Apply + dry-run</th>
                   <td>✓</td>
                   <td>✓</td>
                   <td>Gated</td>
                   <td>Per-client</td>
                 </tr>
                 <tr>
-                  <td>Hosted scheduler + alerts</td>
+                  <th scope="row">Hosted scheduler + alerts</th>
                   <td>—</td>
                   <td>✓</td>
                   <td>✓</td>
                   <td>✓</td>
                 </tr>
                 <tr>
-                  <td>Evidence / chain-of-custody</td>
+                  <th scope="row">Evidence / chain-of-custody</th>
                   <td>—</td>
                   <td>—</td>
                   <td>✓</td>
                   <td>Optional</td>
                 </tr>
                 <tr>
-                  <td>White-label multi-tenant</td>
+                  <th scope="row">White-label multi-tenant</th>
                   <td>—</td>
                   <td>—</td>
                   <td>—</td>
@@ -216,9 +333,9 @@ DRY-RUN START web-01 (vmid=100) -> ec2.StartInstances</code></pre>
         </div>
       </section>
 
-      <section id="faq" class="faq">
+      <section id="faq" class="faq" aria-labelledby="faq-title">
         <div class="container">
-          <h2>FAQ</h2>
+          <h2 id="faq-title">FAQ</h2>
           <dl>
             <dt>Is the software open source?</dt>
             <dd>
