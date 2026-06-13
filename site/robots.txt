@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dedalus-converger.pages.dev/sitemap.xml
