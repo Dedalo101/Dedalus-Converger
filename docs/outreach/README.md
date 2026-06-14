@@ -7,6 +7,7 @@ Materials for recruiting **3–5 private beta partners** for Dedalus Converger.
 | [design-partner-email.md](design-partner-email.md) | Copy-paste email templates (Proxmox, DFIR, cloud, LinkedIn) |
 | [partner-directory.md](partner-directory.md) | Segments, channels, starter targets, outreach tracker |
 | [partner-tracker.csv](partner-tracker.csv) | Spreadsheet tracker — import to Excel/Sheets |
+| [partner-prospects.md](partner-prospects.md) | **15 named prospects** with emails, hooks, ready-to-send drafts |
 
 **Send from:** licensing@dedalo101.com (or your founder inbox)  
 **Product site:** https://dedalus-converger.pages.dev  

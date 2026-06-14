@@ -70,25 +70,16 @@ Use with [design-partner-email.md](design-partner-email.md) and log sends in [pa
 
 ---
 
-## Starter target list (seed — verify before send)
+## Named prospects (filled)
 
-> **These are communities and archetypes, not vetted contacts.**  
-> Replace `CONTACT TBD` with a real name from forum/profile before emailing.
+**15 verified contacts** with emails, forms, and personalization hooks:
 
-| # | Archetype | Segment | Where to find contact | Template | Status |
-|---|-----------|---------|----------------------|----------|--------|
-| 1 | EU hosting MSP (Proxmox, 50+ VMs) | Proxmox MSP | Proxmox forum "service provider" threads | A | `CONTACT TBD` |
-| 2 | US homelab-pro turned small MSP | Proxmox MSP | r/Proxmox monthly help megathread | A | `CONTACT TBD` |
-| 3 | Hetzner dedicated + Proxmox shop | Proxmox MSP | Hetzner Community, LowEndTalk | A | `CONTACT TBD` |
-| 4 | Velociraptor deployment consultant | DFIR | Velociraptor Google Group | B | `CONTACT TBD` |
-| 5 | Boutique IR firm (10–50 consultants) | DFIR | BSides speaker list, LinkedIn | B | `CONTACT TBD` |
-| 6 | KAPE-forward Windows IR shop | DFIR | DFIR Discord / X #DFIR | B | `CONTACT TBD` |
-| 7 | AWS EC2 platform team (startup, 20–100 instances) | Cloud | HN Who's Hiring, LinkedIn | C | `CONTACT TBD` |
-| 8 | Hetzner Cloud automation user | Cloud | GitHub hetzner terraform repos | C | `CONTACT TBD` |
-| 9 | Post-incident replay / SRE team | SRE | SREcon attendees, r/sre | C | `CONTACT TBD` |
-| 10 | Proxmox content creator (10k+ audience) | Influencer | YouTube Proxmox channels | A short | `CONTACT TBD` |
+→ **[partner-prospects.md](partner-prospects.md)** — full profiles + ready-to-send drafts  
+→ **[partner-tracker.csv](partner-tracker.csv)** — import to Excel/Sheets and log status
 
-Copy rows into [partner-tracker.csv](partner-tracker.csv) as you assign real names.
+**P1 this week:** ClearPath MSP, partimus, DG-i, DynFi, credativ, InfoGuard, SEC Consult
+
+**Still to hunt (add to tracker):** AWS EC2 platform team, Hetzner Cloud shop, post-incident SRE team — see channels above.
 
 ---
 
