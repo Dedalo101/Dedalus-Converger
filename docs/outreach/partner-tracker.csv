@@ -1,0 +1,6 @@
+company,contact_name,contact_email,segment,channel,email_variant,date_sent,follow_up_date,status,notes
+,,,Proxmox MSP,Proxmox Forum,A,,,lead,Seed row — replace with real contact
+,,,Proxmox MSP,r/Proxmox,A,,,lead,
+,,,DFIR,Velociraptor Group,B,,,lead,
+,,,DFIR,LinkedIn,B,,,lead,
+,,,Cloud,HN / GitHub,C,,,lead,

@@ -148,6 +148,8 @@ We are actively looking for:
 
 Know a team? Intro to [licensing@dedalo101.com](mailto:licensing@dedalo101.com).
 
+**Outreach kit:** [docs/outreach/](outreach/) — email templates, partner directory, CSV tracker.
+
 ---
 
 ## FAQ
