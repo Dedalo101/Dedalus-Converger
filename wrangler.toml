@@ -3,5 +3,6 @@ compatibility_date = "2024-01-01"
 pages_build_output_dir = "site"
 
 # Cloudflare Pages project: dedalus-converger.pages.dev
+# Custom domains: dedalo101.com, www.dedalo101.com (DNS via Porkbun)
 # Deploy: npx wrangler pages deploy site --project-name=dedalus-converger
-# Custom domain (optional): converger.dedalo101.com
+# DNS: node scripts/porkbun-dns-cloudflare.js
