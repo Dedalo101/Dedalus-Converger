@@ -63,6 +63,8 @@ async function listRecords() {
 function recordName(rec) {
   const name = String(rec.name || "").toLowerCase();
   if (name === "" || name === "@") return "@";
+  if (name === DOMAIN.toLowerCase()) return "@";
+  if (name === `www.${DOMAIN.toLowerCase()}`) return "www";
   return name;
 }
 
