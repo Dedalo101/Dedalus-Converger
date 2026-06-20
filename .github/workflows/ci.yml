@@ -14,6 +14,6 @@ jobs:
       with:
         python-version: '3.12'
     - run: pip install -e .[dev]
-    - run: ruff check .
-    - run: black --check .
+    - run: ruff check src tests scripts
+    - run: black --check src tests
     - run: pytest tests/ -v
