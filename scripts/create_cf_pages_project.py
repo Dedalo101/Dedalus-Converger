@@ -74,9 +74,7 @@ def create_project() -> None:
             "root_dir": "",
         },
     }
-    response = cf_request(
-        "POST", f"/accounts/{ACCOUNT_ID}/pages/projects", payload
-    )
+    response = cf_request("POST", f"/accounts/{ACCOUNT_ID}/pages/projects", payload)
     if not response.get("success"):
         raise RuntimeError(f"Create project failed: {response}")
 
