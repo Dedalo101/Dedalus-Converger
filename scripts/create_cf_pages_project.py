@@ -36,7 +36,9 @@ def cf_request(method: str, path: str, payload: dict | None = None) -> dict:
             return json.loads(body) if body else {}
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"Cloudflare API {method} {path} failed: {exc.code} {body}") from exc
+        raise RuntimeError(
+            f"Cloudflare API {method} {path} failed: {exc.code} {body}"
+        ) from exc
 
 
 def project_exists() -> bool:

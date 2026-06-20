@@ -51,7 +51,9 @@ def github_request(token: str, method: str, path: str, payload: dict | None = No
             return json.loads(body) if body else {}
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"GitHub API {method} {path} failed: {exc.code} {body}") from exc
+        raise RuntimeError(
+            f"GitHub API {method} {path} failed: {exc.code} {body}"
+        ) from exc
 
 
 def encrypt_secret(public_key: str, secret_value: str) -> str:
