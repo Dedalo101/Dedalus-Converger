@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dedalus-converger.pages.dev/sitemap.xml
+Sitemap: https://dedalo101.com/sitemap.xml
