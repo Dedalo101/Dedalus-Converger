@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-DESIGN_HASH = "fa9f7473fef3b2f82469ee875298713684ec4db96e512707053ae8bb8ed22279"
+DESIGN_HASH = "f24992c8b729a3adc28c92ab068e1d88f2245bf852fb8272c88b183e24db6bee"
 
 
 def verify_contract() -> None:
